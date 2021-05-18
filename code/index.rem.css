@@ -1,0 +1,181 @@
+.mod {
+    width: 5rem;
+    height: 2.24rem;
+}
+
+.box {
+    background-color: #ffffff;
+    width: 5rem;
+    height: 2.24rem;
+}
+
+.info {
+    position: relative;
+    margin-top: 0.16rem;
+    margin-left: 0.2rem;
+    max-width: 4.8rem;
+    height: 0.24rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 0.24rem;
+    white-space: nowrap;
+    color: #181818;
+    font-size: 0.17rem;
+    font-weight: 400;
+}
+
+.bd {
+    position: relative;
+    align-self: center;
+    height: 0.23rem;
+}
+
+.word {
+    margin-right: 2.05rem;
+    margin-bottom: 0.03rem;
+    line-height: 0.13rem;
+    white-space: pre;
+    color: #acacac;
+    font-size: 0.13rem;
+    font-weight: 400;
+}
+
+.text {
+    margin-bottom: 0.03rem;
+    line-height: 0.16rem;
+    white-space: nowrap;
+    color: #fc9627;
+    font-size: 0.16rem;
+    font-weight: 400;
+}
+
+.ft {
+    position: relative;
+    align-self: center;
+    margin-top: 0.15rem;
+}
+
+.pic {
+    margin-top: -0.01rem;
+    margin-right: 0.11rem;
+    width: 1.31rem;
+    height: 1.31rem;
+    overflow: hidden;
+}
+
+.group {
+    margin-top: 0.01rem;
+}
+
+.desc {
+    webkit-box-orient: vertical;
+    display: -webkit-inline-box;
+    webkit-line-clamp: 2;
+    position: relative;
+    width: 3.15rem;
+    height: 0.48rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 0.24rem;
+    letter-spacing: 0.2px;
+    color: #181818;
+    font-size: 0.19rem;
+    font-weight: 400;
+}
+
+.info_1 {
+    position: relative;
+    margin-top: 0.04rem;
+    margin-left: 0.03rem;
+    max-width: 2.97rem;
+    height: 0.19rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 0.19rem;
+    white-space: nowrap;
+    color: #acacac;
+    font-size: 0.13rem;
+    font-weight: 400;
+}
+
+.container {
+    position: relative;
+    margin-top: 0.29rem;
+}
+
+.priceWrap {
+    margin-right: 0.36rem;
+    height: 0.23rem;
+}
+
+.yuan {
+    margin-top: 0.01rem;
+    margin-right: -0.03rem;
+    line-height: 0.16rem;
+    white-space: nowrap;
+    color: #fd2020;
+    font-size: 0.16rem;
+    font-weight: 400;
+}
+
+.price {
+    margin-top: -0.01rem;
+    margin-right: 0.01rem;
+    line-height: 0.2rem;
+    white-space: nowrap;
+    color: #fd2020;
+    font-size: 0.2rem;
+    font-weight: 400;
+}
+
+.count {
+    margin-top: -0.01rem;
+    line-height: 0.19rem;
+    white-space: nowrap;
+    color: #fd2020;
+    font-size: 0.19rem;
+    font-weight: 400;
+}
+
+.tagWrap {
+    box-sizing: border-box;
+    margin-right: 0.16rem;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.16rem;
+    border-color: #e2e2e2;
+    background-color: #ffffff;
+    padding-right: 0.21rem;
+    padding-left: 0.21rem;
+    height: 0.31rem;
+}
+
+.tag {
+    margin-top: 0;
+    line-height: 0.13rem;
+    white-space: nowrap;
+    color: #7b7b7b;
+    font-size: 0.13rem;
+    font-weight: 400;
+}
+
+.tagWrap_1 {
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.16rem;
+    border-color: #e2e2e2;
+    background-color: #ffffff;
+    padding-right: 0.21rem;
+    padding-left: 0.21rem;
+    height: 0.31rem;
+}
+
+.tag_1 {
+    margin-top: 0;
+    line-height: 0.13rem;
+    white-space: nowrap;
+    color: #7b7b7b;
+    font-size: 0.13rem;
+    font-weight: 400;
+}

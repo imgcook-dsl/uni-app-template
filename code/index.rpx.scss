@@ -1,0 +1,164 @@
+.mod {
+    width: 375rpx;
+    height: 168rpx;
+    .box {
+        background-color: #ffffff;
+        width: 375rpx;
+        height: 168rpx;
+        .info {
+            position: relative;
+            margin-top: 12rpx;
+            margin-left: 15rpx;
+            max-width: 360rpx;
+            height: 18rpx;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 18rpx;
+            white-space: nowrap;
+            color: #181818;
+            font-size: 13rpx;
+            font-weight: 400;
+        }
+        .bd {
+            position: relative;
+            align-self: center;
+            height: 17rpx;
+            .word {
+                margin-right: 154rpx;
+                margin-bottom: 2rpx;
+                line-height: 10rpx;
+                white-space: pre;
+                color: #acacac;
+                font-size: 10rpx;
+                font-weight: 400;
+            }
+            .text {
+                margin-bottom: 2rpx;
+                line-height: 12rpx;
+                white-space: nowrap;
+                color: #fc9627;
+                font-size: 12rpx;
+                font-weight: 400;
+            }
+        }
+        .ft {
+            position: relative;
+            align-self: center;
+            margin-top: 11rpx;
+            .pic {
+                margin-top: -1rpx;
+                margin-right: 8rpx;
+                width: 98rpx;
+                height: 98rpx;
+                overflow: hidden;
+            }
+            .group {
+                margin-top: 1rpx;
+                .desc {
+                    webkit-box-orient: vertical;
+                    display: -webkit-inline-box;
+                    webkit-line-clamp: 2;
+                    position: relative;
+                    width: 236rpx;
+                    height: 36rpx;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    line-height: 18rpx;
+                    letter-spacing: 0.2px;
+                    color: #181818;
+                    font-size: 14rpx;
+                    font-weight: 400;
+                }
+                .info_1 {
+                    position: relative;
+                    margin-top: 3rpx;
+                    margin-left: 2rpx;
+                    max-width: 223rpx;
+                    height: 14rpx;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    line-height: 14rpx;
+                    white-space: nowrap;
+                    color: #acacac;
+                    font-size: 10rpx;
+                    font-weight: 400;
+                }
+                .container {
+                    position: relative;
+                    margin-top: 22rpx;
+                    .priceWrap {
+                        margin-right: 27rpx;
+                        height: 17rpx;
+                        .yuan {
+                            margin-top: 1rpx;
+                            margin-right: -2rpx;
+                            line-height: 12rpx;
+                            white-space: nowrap;
+                            color: #fd2020;
+                            font-size: 12rpx;
+                            font-weight: 400;
+                        }
+                        .price {
+                            margin-top: -1rpx;
+                            margin-right: 1rpx;
+                            line-height: 15rpx;
+                            white-space: nowrap;
+                            color: #fd2020;
+                            font-size: 15rpx;
+                            font-weight: 400;
+                        }
+                        .count {
+                            margin-top: -1rpx;
+                            line-height: 14rpx;
+                            white-space: nowrap;
+                            color: #fd2020;
+                            font-size: 14rpx;
+                            font-weight: 400;
+                        }
+                    }
+                    .block {
+                        .tagWrap {
+                            box-sizing: border-box;
+                            margin-right: 12rpx;
+                            border-width: 1px;
+                            border-style: solid;
+                            border-radius: 11.86rpx;
+                            border-color: #e2e2e2;
+                            background-color: #ffffff;
+                            padding-right: 16rpx;
+                            padding-left: 16rpx;
+                            height: 23rpx;
+                            .tag {
+                                margin-top: 0rpx;
+                                line-height: 10rpx;
+                                white-space: nowrap;
+                                color: #7b7b7b;
+                                font-size: 10rpx;
+                                font-weight: 400;
+                            }
+                        }
+                        .tagWrap_1 {
+                            box-sizing: border-box;
+                            border-width: 1px;
+                            border-style: solid;
+                            border-radius: 11.86rpx;
+                            border-color: #e2e2e2;
+                            background-color: #ffffff;
+                            padding-right: 16rpx;
+                            padding-left: 16rpx;
+                            height: 23rpx;
+                            .tag_1 {
+                                margin-top: 0rpx;
+                                line-height: 10rpx;
+                                white-space: nowrap;
+                                color: #7b7b7b;
+                                font-size: 10rpx;
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,181 @@
+.mod {
+    width: 50vw;
+    height: 22.4vw;
+}
+
+.box {
+    background-color: #ffffff;
+    width: 50vw;
+    height: 22.4vw;
+}
+
+.info {
+    position: relative;
+    margin-top: 1.6vw;
+    margin-left: 2vw;
+    max-width: 48vw;
+    height: 2.4vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 2.4vw;
+    white-space: nowrap;
+    color: #181818;
+    font-size: 1.73vw;
+    font-weight: 400;
+}
+
+.bd {
+    position: relative;
+    align-self: center;
+    height: 2.27vw;
+}
+
+.word {
+    margin-right: 20.53vw;
+    margin-bottom: 0.27vw;
+    line-height: 1.33vw;
+    white-space: pre;
+    color: #acacac;
+    font-size: 1.33vw;
+    font-weight: 400;
+}
+
+.text {
+    margin-bottom: 0.27vw;
+    line-height: 1.6vw;
+    white-space: nowrap;
+    color: #fc9627;
+    font-size: 1.6vw;
+    font-weight: 400;
+}
+
+.ft {
+    position: relative;
+    align-self: center;
+    margin-top: 1.47vw;
+}
+
+.pic {
+    margin-top: -0.13vw;
+    margin-right: 1.07vw;
+    width: 13.07vw;
+    height: 13.07vw;
+    overflow: hidden;
+}
+
+.group {
+    margin-top: 0.13vw;
+}
+
+.desc {
+    webkit-box-orient: vertical;
+    display: -webkit-inline-box;
+    webkit-line-clamp: 2;
+    position: relative;
+    width: 31.47vw;
+    height: 4.8vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 2.4vw;
+    letter-spacing: 0.2px;
+    color: #181818;
+    font-size: 1.87vw;
+    font-weight: 400;
+}
+
+.info_1 {
+    position: relative;
+    margin-top: 0.4vw;
+    margin-left: 0.27vw;
+    max-width: 29.73vw;
+    height: 1.87vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.87vw;
+    white-space: nowrap;
+    color: #acacac;
+    font-size: 1.33vw;
+    font-weight: 400;
+}
+
+.container {
+    position: relative;
+    margin-top: 2.93vw;
+}
+
+.priceWrap {
+    margin-right: 3.6vw;
+    height: 2.27vw;
+}
+
+.yuan {
+    margin-top: 0.13vw;
+    margin-right: -0.27vw;
+    line-height: 1.6vw;
+    white-space: nowrap;
+    color: #fd2020;
+    font-size: 1.6vw;
+    font-weight: 400;
+}
+
+.price {
+    margin-top: -0.13vw;
+    margin-right: 0.13vw;
+    line-height: 2vw;
+    white-space: nowrap;
+    color: #fd2020;
+    font-size: 2vw;
+    font-weight: 400;
+}
+
+.count {
+    margin-top: -0.13vw;
+    line-height: 1.87vw;
+    white-space: nowrap;
+    color: #fd2020;
+    font-size: 1.87vw;
+    font-weight: 400;
+}
+
+.tagWrap {
+    box-sizing: border-box;
+    margin-right: 1.6vw;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 1.47vw;
+    border-color: #e2e2e2;
+    background-color: #ffffff;
+    padding-right: 2.13vw;
+    padding-left: 2.13vw;
+    height: 3.07vw;
+}
+
+.tag {
+    margin-top: 0;
+    line-height: 1.33vw;
+    white-space: nowrap;
+    color: #7b7b7b;
+    font-size: 1.33vw;
+    font-weight: 400;
+}
+
+.tagWrap_1 {
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 1.47vw;
+    border-color: #e2e2e2;
+    background-color: #ffffff;
+    padding-right: 2.13vw;
+    padding-left: 2.13vw;
+    height: 3.07vw;
+}
+
+.tag_1 {
+    margin-top: 0;
+    line-height: 1.33vw;
+    white-space: nowrap;
+    color: #7b7b7b;
+    font-size: 1.33vw;
+    font-weight: 400;
+}
