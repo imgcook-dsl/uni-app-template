@@ -1,0 +1,22 @@
+<template>
+{{{template}}}
+</template>
+
+<script>
+{{{imports}}}
+export default {
+    data() {
+       return {
+           {{{datas.join(',')}}}
+       } 
+    },
+    methods: {
+        {{{methods.join(',')}}}
+    },
+    {{{lifeCycles.join(',')}}}
+}
+</script>
+
+<style scoped>
+    {{{styles.join('\n')}}}
+</style>
