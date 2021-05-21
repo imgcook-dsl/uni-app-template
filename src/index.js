@@ -540,6 +540,18 @@ module.exports = function(schema, option) {
     singleQuote: true
   };
 
+  const prettierOptCss = {
+    parser: 'css',
+    tabWidth: 2
+  };
+
+  const prettierOptScss = {
+    parser: 'scss',
+    tabWidth: 2,
+    printWidth: 120,
+    singleQuote: true
+  };
+
   return {
     panelDisplay: [
       {
@@ -573,36 +585,22 @@ module.exports = function(schema, option) {
       },
       {
         panelName: 'index.css',
-        panelValue: prettier.format(`${styles.join('\n')}`, {
-          parser: 'css',
-          tabWidth: 4
-        }),
+        panelValue: prettier.format(`${styles.join('\n')}`, prettierOptCss),
         panelType: 'css'
       },
       {
         panelName: 'index.response.css',
-        panelValue: prettier.format(styles4vw.join('\n'), {
-          parser: 'css',
-          tabWidth: 4
-        }),
+        panelValue: prettier.format(styles4vw.join('\n'), prettierOptCss),
         panelType: 'css'
       },
       {
         panelName: 'index.rem.css',
-        panelValue: prettier.format(styles4rem.join('\n'), {
-          parser: 'css',
-          tabWidth: 4
-        }),
+        panelValue: prettier.format(styles4rem.join('\n'), prettierOptCss),
         panelType: 'css'
       },
       {
         panelName: 'index.rpx.scss',
-        panelValue: prettier.format(`${generateScss(schema)}`, {
-          parser: 'scss',
-          tabWidth: 4,
-          printWidth: 120,
-          singleQuote: true
-        }),
+        panelValue: prettier.format(`${generateScss(schema)}`, prettierOptScss),
         panelType: 'scss'
       }
     ],
