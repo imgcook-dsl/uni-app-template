@@ -410,7 +410,7 @@ module.exports = function(schema, option) {
     let props = '';
 
     Object.keys(schema.props).forEach((key) => {
-      if ([ 'className', 'style', 'text', 'src', 'lines' ].indexOf(key) === -1) {
+      if ([ 'className', 'style', 'text', 'src', 'lines', 'dealGradient' ].indexOf(key) === -1) {
         props += ` ${parsePropsKey(key, schema.props[key])}=${parseProps(schema.props[key])}`;
       }
     });
@@ -457,7 +457,7 @@ module.exports = function(schema, option) {
   };
 
   // parse schema
-  const transform = (schema) => {
+  const transform = (schema, flag) => {
     let result = '';
 
     if (Array.isArray(schema)) {
@@ -467,7 +467,7 @@ module.exports = function(schema, option) {
     } else {
       const type = schema.componentName.toLowerCase();
 
-      if ([ 'page', 'block', 'component' ].indexOf(type) !== -1) {
+      if ([ 'page', 'block', 'component' ].indexOf(type) !== -1 && !flag) {
         // 容器组件处理: state/method/dataSource/lifeCycle/render
         const init = [];
 
@@ -530,7 +530,7 @@ module.exports = function(schema, option) {
   }
 
   // start parse schema
-  transform(schema);
+  transform(schema, true);
   datas.push(`constants: ${toString(constants)}`);
 
   const prettierOpt = {
