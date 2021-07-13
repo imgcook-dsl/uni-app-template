@@ -79,6 +79,7 @@ module.exports = function(schema, option) {
   const _w = width / 100;
 
   const _ratio = width / viewportWidth;
+  let isPage = false;
 
   const isExpression = (value) => {
     return /^\{\{.*\}\}$/.test(value);
@@ -460,14 +461,20 @@ module.exports = function(schema, option) {
   const transform = (schema, flag) => {
     let result = '';
 
+    if (flag && schema.componentName === 'Page') {
+      isPage = true;
+    }
+
     if (Array.isArray(schema)) {
       schema.forEach((layer) => {
         result += transform(layer);
       });
     } else {
-      const type = schema.componentName.toLowerCase();
-
-      if ([ 'page', 'block', 'component' ].indexOf(type) !== -1 && !flag) {
+      let type = schema.componentName.toLowerCase();
+      if (isPage && type === 'block') {
+        type = 'div';
+      }
+      if ([ 'page', 'block', 'component' ].indexOf(type) !== -1) {
         // 容器组件处理: state/method/dataSource/lifeCycle/render
         const init = [];
 
