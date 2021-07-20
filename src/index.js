@@ -375,7 +375,8 @@ module.exports = function(schema, option) {
     const type = schema.componentName.toLowerCase();
     const className = schema.props && schema.props.className;
 
-    const { extraClasses, newStyle } = styleFilter(_.get(schema.props, 'style'));
+    // const { extraClasses, newStyle } = styleFilter(_.get(schema.props, 'style'));
+    const newStyle = _.get(schema.props, 'style');
     const classList = [];
     _.set(schema.props, 'style', newStyle);
 
