@@ -418,7 +418,36 @@ export const generateCSS = (style, prefix = '') => {
   return css;
 };
 
+// 根据 schema 生成 scss 或者 less
+export const generateScss = (schema) => {
+  let scss = '';
 
+  function walk(json) {
+    if (json.props.className) {
+      let className = json.props.className;
+      scss += `.${className}{`;
+      scss += `${generateCssString(parseStyle(json.props.style))};`;
+    }
+
+    if (json.children && json.children.length > 0) {
+      json.children.forEach((child) => {
+        // 因还未实现 组件化出码，所以导出全部css 
+        // if (!['block', 'component', 'page'].includes(child.componentName.toLowerCase())) {
+        //   walk(child)
+        // }
+        walk(child)
+      });
+    }
+
+    if (json.props.className) {
+      scss += '}';
+    }
+  }
+
+  walk(schema);
+
+  return scss;
+};
 
 export const normalizeTemplateAttrValue = ({ key, value }) => {
   if (typeof value === 'string') {

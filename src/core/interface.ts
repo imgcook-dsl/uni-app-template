@@ -17,6 +17,7 @@ export interface IDslConfig {
   responseWidth: number;
   scale: number;
   cssUnit: 'rpx'|'px'|'vw'|'rem';
+  cssType: 'css'|'less'|'scss';
   cssStyle: 'kebabCase' | 'camelCase' | 'snakeCase';
   outputStyle: 'component'| 'page';
   htmlFontSize: number

@@ -2,12 +2,8 @@ import { IPanelDisplay, IImport } from './interface';
 
 const kebabCase = require('lodash/kebabCase');
 
-import {
-  DSL_CONFIG,
-  prettierVueOpt, prettierCssOpt, prettierScssOpt
-} from './consts'
-
-import { isExpression, toString } from './utils';
+import { DSL_CONFIG, prettierVueOpt, prettierCssOpt, prettierScssOpt } from './consts'
+import { isExpression, toString, parseStyle, generateCSS, generateScss } from './utils';
 
 export default function exportMod(schema, option): IPanelDisplay[] {
   const { _, prettier } = option;
@@ -35,11 +31,8 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   const lifeCycles: string[] = [];
 
   // styles
-  const styles: string[] = [];
-
-  const styles4vw: string[] = [];
-
-  const styles4rem: string[] = [];
+  // style
+  const styleMap = {};
 
   // box relative style
   const boxStyleList = [
@@ -97,45 +90,6 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     return name.replace('on', '').toLowerCase();
   };
 
-
-  // convert to responsive unit, such as vw
-  const parseStyle = (style, option: any = {}) => {
-    const { toVW, toREM, toRPX } = option;
-    const styleData: string[] = [];
-    for (let key in style) {
-      let value = style[key];
-      if (boxStyleList.indexOf(key) != -1 && String(value).indexOf('%') == -1 && String(value).indexOf('auto') == -1) {
-        if (toVW) {
-          value = (parseInt(value) / _w).toFixed(2);
-          value = value == 0 ? value : value + 'vw';
-        } else if (toREM && htmlFontSize) {
-          const valueNum = typeof value == 'string' ? value.replace(/(px)|(rem)/, '') : value;
-          value = parseFloat((valueNum / htmlFontSize).toFixed(2));
-          value = value ? `${value}rem` : value;
-        } else if (toRPX) {
-          value = String(value);
-          value = value.replace(/(rem)|(px)/, '');
-          value = (Number(value) * 750 / width).toFixed(2);
-          value = '' + value;
-
-          if (value.length > 3 && value.substr(-3, 3) == 'rem') {
-            value = value.slice(0, -3) + 'rpx';
-          } else {
-            value += 'rpx';
-          }
-        } else {
-          value = parseInt(value).toFixed(2);
-          value = value == 0 ? value : value + 'px';
-        }
-        styleData.push(`${kebabCase(key)}: ${value}`);
-      } else if (noUnitStyles.indexOf(key) != -1 && !isNaN(value)) {
-        styleData.push(`${kebabCase(key)}: ${parseFloat(value)}`);
-      } else if (excludeStyles.indexOf(key) === -1) {
-        styleData.push(`${kebabCase(key)}: ${value}`);
-      }
-    }
-    return styleData.join(';');
-  };
 
   // parse function, return params and content
   const parseFunction = (func) => {
@@ -286,31 +240,6 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     return render;
   };
 
-  // className structure support
-  const generateScss = (schema) => {
-    let scss = '';
-
-    function walk(json) {
-      if (json.props.className) {
-        let className = json.props.className;
-        scss += `.${className} {`;
-
-        scss += `${parseStyle(json.props.style, { toRPX: true })};`;
-      }
-
-      if (json.children && json.children.length > 0) {
-        json.children.forEach((child) => walk(child));
-      }
-
-      if (json.props.className) {
-        scss += '}';
-      }
-    }
-
-    walk(schema);
-
-    return scss;
-  };
 
   // style filter
   const styleFilter = (style) => {
@@ -372,21 +301,9 @@ export default function exportMod(schema, option): IPanelDisplay[] {
       styleString = '';
 
     if (className && !_.isEmpty(newStyle)) {
-      styles.push(`
-	    .${className} {
-	      ${parseStyle(schema.props.style)}
-	    }
-	  `);
-      styles4vw.push(`
-	    .${className} {
-	      ${parseStyle(schema.props.style, { toVW: true })}
-	    }
-	  `);
-      styles4rem.push(`
-	    .${className} {
-	      ${parseStyle(schema.props.style, { toREM: true })}
-	    }
-	  `);
+
+      styleMap[className] = parseStyle(schema.props.style);
+
       classList.push(className);
     } else if (!_.isEmpty(newStyle)) {
       styleString = ` style="${parseStyle(schema.props.style)}"`;
@@ -529,6 +446,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   transform(schema, true);
   datas.push(`constants: ${toString(constants)}`);
 
+
   const indexVue = `
   <template>
     ${template}
@@ -547,36 +465,34 @@ export default function exportMod(schema, option): IPanelDisplay[] {
       ${lifeCycles.join(',\n')}
     }
   </script>
-  <style scoped lang="scss">
-@import './index.rpx.scss';
+  <style scoped lang="${DSL_CONFIG.cssType}">
+@import './index.${DSL_CONFIG.cssType}';
 </style>
 `
-  return [
+  const panelDisplay = [
     {
       panelName: `index.vue`,
       panelValue: prettier.format(indexVue, prettierVueOpt
       ),
       panelType: 'vue'
-    },
-    {
+    }]
+
+
+  if (DSL_CONFIG.cssType === 'css') {
+    panelDisplay.push({
       panelName: 'index.css',
-      panelValue: prettier.format(`${styles.join('\n')}`, prettierCssOpt),
+      panelValue: prettier.format(generateCSS(styleMap), prettierCssOpt),
       panelType: 'css'
-    },
-    {
-      panelName: 'index.response.css',
-      panelValue: prettier.format(styles4vw.join('\n'), prettierCssOpt),
-      panelType: 'css'
-    },
-    {
-      panelName: 'index.rem.css',
-      panelValue: prettier.format(styles4rem.join('\n'), prettierCssOpt),
-      panelType: 'css'
-    },
-    {
-      panelName: 'index.rpx.scss',
-      panelValue: prettier.format(`${generateScss(schema)}`, prettierScssOpt),
-      panelType: 'scss'
-    }
-  ]
+    })
+  } else {
+    panelDisplay.push({
+      panelName: 'index.' + DSL_CONFIG.cssType,
+      panelValue: prettier.format(generateScss(schema), prettierScssOpt),
+      panelType: DSL_CONFIG.cssType
+    })
+  }
+
+
+
+  return panelDisplay;
 };
