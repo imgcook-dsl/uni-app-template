@@ -3,6 +3,7 @@ import { IPanelDisplay, IImport } from './interface';
 const kebabCase = require('lodash/kebabCase');
 
 import {
+  DSL_CONFIG,
   prettierVueOpt, prettierCssOpt, prettierScssOpt
 } from './consts'
 
@@ -83,7 +84,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
 
   const width = option.responsive.width || 750;
   const viewportWidth = option.responsive.viewportWidth || 375;
-  const htmlFontsize = viewportWidth ? viewportWidth / 10 : null;
+  const htmlFontSize = DSL_CONFIG.htmlFontSize || 16;
 
   // 1vw = width / 100
   const _w = width / 100;
@@ -107,10 +108,9 @@ export default function exportMod(schema, option): IPanelDisplay[] {
         if (toVW) {
           value = (parseInt(value) / _w).toFixed(2);
           value = value == 0 ? value : value + 'vw';
-        } else if (toREM && htmlFontsize) {
+        } else if (toREM && htmlFontSize) {
           const valueNum = typeof value == 'string' ? value.replace(/(px)|(rem)/, '') : value;
-          const fontSize = parseFloat((valueNum * (viewportWidth / width)).toFixed(2));
-          value = parseFloat(<string>(fontSize / htmlFontsize).toFixed(2));
+          value = parseFloat((valueNum / htmlFontSize).toFixed(2));
           value = value ? `${value}rem` : value;
         } else if (toRPX) {
           value = String(value);
@@ -529,33 +529,32 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   transform(schema, true);
   datas.push(`constants: ${toString(constants)}`);
 
+  const indexVue = `
+  <template>
+    ${template}
+  </template>
+  <script>
+    ${imports.join('\n')}
+    export default {
+      data() {
+        return {
+          ${datas.join(',\n')}
+        } 
+      },
+      methods: {
+        ${methods.join(',\n')}
+      },
+      ${lifeCycles.join(',\n')}
+    }
+  </script>
+  <style scoped lang="scss">
+@import './index.rpx.scss';
+</style>
+`
   return [
     {
       panelName: `index.vue`,
-      panelValue: prettier.format(
-        `
-        <template>
-          ${template}
-        </template>
-        <script>
-          ${imports.join('\n')}
-          export default {
-            data() {
-              return {
-                ${datas.join(',\n')}
-              } 
-            },
-            methods: {
-              ${methods.join(',\n')}
-            },
-            ${lifeCycles.join(',\n')}
-          }
-        </script>
-        <style scoped lang="scss">
-    @import './index.rpx.scss';
-    </style>
-      `,
-        prettierVueOpt
+      panelValue: prettier.format(indexVue, prettierVueOpt
       ),
       panelType: 'vue'
     },
