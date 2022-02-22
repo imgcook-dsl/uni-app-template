@@ -3,3 +3,4 @@ node_modules
 codeExample
 package-lock.json
 code/*
+dist/*
